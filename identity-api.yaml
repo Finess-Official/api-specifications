@@ -194,7 +194,7 @@ components:
       type: string
       description: "Пароль пользователя"
       example: "Example1"
-      pattern: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{6,}$"
+      pattern: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{6,72}$"
   responses:
     BadRequest:
       description: "Неверный формат данных запроса"
