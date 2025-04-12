@@ -9,13 +9,18 @@ servers:
     variables:
       protocol:
         enum:
+          - "http"
           - "https"
         default: "https"
       port:
         enum:
+          - "8080"
           - "443"
         default: "443"
       server:
+        enum:
+          - "localhost"
+          - "finesspay.ru"
         default: "finesspay.ru"
       basePath:
         default: "/api/identity"
@@ -48,6 +53,28 @@ paths:
           $ref: "#/components/responses/BadRequest"
         '429':
           $ref: "#/components/responses/TooManyRequests"
+        '500':
+          $ref: "#/components/responses/InternalServerError"
+        '503':
+          $ref: "#/components/responses/ServiceUnavailable"
+  /v1/current:
+    get:
+      tags:
+        - users
+      description: "Получение информации о текущем пользователе"
+      summary: "Текущий пользователь"
+      operationId: "getCurrentUser"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: "Текущий пользователь"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        '401':
+          $ref: "#/components/responses/Unauthorized"
         '500':
           $ref: "#/components/responses/InternalServerError"
         '503':
