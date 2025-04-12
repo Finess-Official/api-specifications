@@ -187,9 +187,9 @@ components:
         - id
     UserId:
       type: string
+      format: uuid
       description: "Уникальный айди пользователя"
-      example: "1897488438010052608"
-      pattern: "^[a-zA-Z0-9_-]{3,16}$"
+      example: "01961775-6c2d-752e-a795-b79236b4fa47"
     UserPassword:
       type: string
       description: "Пароль пользователя"
