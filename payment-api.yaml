@@ -97,8 +97,8 @@ components:
     AccountCreationParameters:
       type: object
       properties:
-        recipientName:
-          $ref: "#/components/schemas/RecipientName"
+        ownerName:
+          $ref: "#/components/schemas/OwnerName"
         inn:
           $ref: "#/components/schemas/INN"
         bik:
@@ -106,7 +106,7 @@ components:
         accountNumber:
           $ref: "#/components/schemas/AccountNumber"
       required:
-        - recipientName
+        - ownerName
         - inn
         - bik
         - accountNumber
@@ -115,8 +115,8 @@ components:
       properties:
         id:
           $ref: "#/components/schemas/AccountId"
-        recipientName:
-          $ref: "#/components/schemas/RecipientName"
+        ownerName:
+          $ref: "#/components/schemas/OwnerName"
         inn:
           $ref: "#/components/schemas/INN"
         bik:
@@ -125,7 +125,7 @@ components:
           $ref: "#/components/schemas/AccountNumber"
       required:
         - id
-        - recipientName
+        - ownerName
         - inn
         - bik
         - accountNumber
@@ -134,23 +134,23 @@ components:
       format: uuid
       description: "Идентификатор счета"
       example: "550e8400-e29b-41d4-a716-446655440000"
-    RecipientName:
+    OwnerName:
       type: string
-      description: "Имя получателя"
+      description: "Имя владельца счета"
       example: "Иванов Иван Иванович"
     INN:
       type: string
-      description: "ИНН получателя"
+      description: "ИНН владельца счета"
       pattern: "^(\\d{12}|\\d{10}|0{1})$"
       example: "123456789012"
     BIK:
       type: string
-      description: "БИК банка получателя"
+      description: "БИК банка владельца счета"
       pattern: "^\\d{9}$"
       example: "123456789"
     AccountNumber:
       type: string
-      description: "Номер счета получателя"
+      description: "Номер счета"
       pattern: "^(\\d{20}|\\d{22})$"
       example: "12345678901234567890"
     QRCodeCreationParameters:
