@@ -38,7 +38,7 @@ paths:
       description: "Создание нового счета для входящих платежей"
       operationId: "createAccount"
       security:
-        - bearerAuth: []
+        - bearerAuth: [ ]
       requestBody:
         description: "Параметры создания счета"
         required: true
@@ -69,7 +69,7 @@ paths:
       description: "Создание нового QR-кода для входящих платежей"
       operationId: "createQRCode"
       security:
-        - bearerAuth: []
+        - bearerAuth: [ ]
       requestBody:
         description: "Параметры создания QR-кода"
         required: true
@@ -86,6 +86,8 @@ paths:
                 $ref: "#/components/schemas/QRCode"
         '400':
           $ref: "#/components/responses/BadRequest"
+        '404':
+          $ref: "#/components/responses/NotFound"
         '429':
           $ref: "#/components/responses/TooManyRequests"
         '500':
@@ -168,6 +170,7 @@ components:
       format: float
       description: "Сумма платежа. Должна быть положительным числом с двумя знаками после запятой"
       example: 100.50
+      maximum: 99999999.99
     QRCode:
       type: object
       properties:
@@ -187,6 +190,8 @@ components:
       example: "Lqj8a0"
       minLength: 6
   responses:
+    NotFound:
+      description: "Ресурс не найден"
     BadRequest:
       description: "Неверный формат данных запроса"
     Unauthorized:
