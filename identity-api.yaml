@@ -148,8 +148,17 @@ components:
       properties:
         password:
           $ref: "#/components/schemas/UserPassword"
+        firstName:
+          $ref: "#/components/schemas/UserFirstName"
+        lastName:
+          $ref: "#/components/schemas/UserLastName"
+        middleName:
+          $ref: "#/components/schemas/UserMiddleName"
       required:
         - password
+        - firstName
+        - lastName
+        - middleName
     UserSigninParameters:
       type: object
       properties:
@@ -210,8 +219,29 @@ components:
       properties:
         id:
           $ref: "#/components/schemas/UserId"
+        firstName:
+          $ref: "#/components/schemas/UserFirstName"
+        lastName:
+          $ref: "#/components/schemas/UserLastName"
+        middleName:
+          $ref: "#/components/schemas/UserMiddleName"
       required:
         - id
+        - firstName
+        - lastName
+        - middleName
+    UserFirstName:
+      type: string
+      description: "Имя пользователя"
+      example: "Иван"
+    UserLastName:
+      type: string
+      description: "Фамилия пользователя"
+      example: "Иванов"
+    UserMiddleName:
+      type: string
+      description: "Отчество пользователя"
+      example: "Иванович"
     UserId:
       type: string
       format: uuid
