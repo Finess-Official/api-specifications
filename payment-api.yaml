@@ -65,6 +65,31 @@ paths:
           $ref: "#/components/responses/InternalServerError"
         '503':
           $ref: "#/components/responses/ServiceUnavailable"
+    get:
+      tags:
+        - accounts
+      summary: "Получение списка счетов"
+      description: "Получение списка всех счетов пользователя"
+      operationId: "getAccounts"
+      security:
+        - bearerAuth: [ ]
+      responses:
+        '200':
+          description: "Список счетов успешно получен"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Account"
+        '401':
+          $ref: "#/components/responses/Unauthorized"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
+        '500':
+          $ref: "#/components/responses/InternalServerError"
+        '503':
+          $ref: "#/components/responses/ServiceUnavailable"
   /v1/accounts/{id}:
     get:
       tags:
@@ -89,6 +114,35 @@ paths:
                 $ref: "#/components/schemas/Account"
         '400':
           $ref: "#/components/responses/BadRequest"
+        '404':
+          $ref: "#/components/responses/NotFound"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
+        '500':
+          $ref: "#/components/responses/InternalServerError"
+        '503':
+          $ref: "#/components/responses/ServiceUnavailable"
+    delete:
+      tags:
+        - accounts
+      summary: "Удаление счета"
+      operationId: "deleteAccount"
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: "Идентификатор счета"
+          schema:
+            $ref: "#/components/schemas/AccountId"
+      responses:
+        '204':
+          $ref: "#/components/responses/NoContent"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '401':
+          $ref: "#/components/responses/Unauthorized"
         '404':
           $ref: "#/components/responses/NotFound"
         '429':
@@ -283,6 +337,16 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Payment"
+        '400':
+          $ref: "#/components/responses/BadRequest"
+        '401':
+          $ref: "#/components/responses/Unauthorized"
+        '429':
+          $ref: "#/components/responses/TooManyRequests"
+        '500':
+          $ref: "#/components/responses/InternalServerError"
+        '503':
+          $ref: "#/components/responses/ServiceUnavailable"
   /v1/beacons:
     post:
       tags:
